@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.fmrButton = new System.Windows.Forms.Button();
             this.appelMdlLectureGestElv = new System.Windows.Forms.Button();
             this.gestElv = new System.Windows.Forms.Label();
@@ -48,7 +49,7 @@
             // 
             // fmrButton
             // 
-            this.fmrButton.Location = new System.Drawing.Point(409, 254);
+            this.fmrButton.Location = new System.Drawing.Point(380, 254);
             this.fmrButton.Name = "fmrButton";
             this.fmrButton.Size = new System.Drawing.Size(108, 23);
             this.fmrButton.TabIndex = 5;
@@ -195,10 +196,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(302, 254);
+            this.button1.Location = new System.Drawing.Point(282, 254);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 23);
-            this.button1.TabIndex = 20;
+            this.button1.TabIndex = 21;
             this.button1.Text = "Administration";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnAdmin_Click);
@@ -224,8 +225,9 @@
             this.Controls.Add(this.gestElv);
             this.Controls.Add(this.fmrButton);
             this.Controls.Add(this.appelMdlLectureGestElv);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Menu";
-            this.Text = "Form1";
+            this.Text = "Menu de l\'application";
             this.ResumeLayout(false);
             this.PerformLayout();
 

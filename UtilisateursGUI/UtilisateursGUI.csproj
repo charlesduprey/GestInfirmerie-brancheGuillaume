@@ -115,6 +115,12 @@
     <Compile Include="GestionVst\FrmAjoutVst.Designer.cs">
       <DependentUpon>FrmAjoutVst.cs</DependentUpon>
     </Compile>
+    <Compile Include="GestionVst\FrmModifVst.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionVst\FrmModifVst.Designer.cs">
+      <DependentUpon>FrmModifVst.cs</DependentUpon>
+    </Compile>
     <Compile Include="GEST_INFIRMERIEDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -129,14 +135,16 @@
     <Compile Include="MenuAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MenuAdmin.Designer.cs">
+    <Compile Include="MenuAdmin.designer.cs">
       <DependentUpon>MenuAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GestionCsv\FrmCsv.resx" />
     <EmbeddedResource Include="GestionCsv\frmExport.resx">
       <DependentUpon>frmExport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GestionCsv\FrmImpCsv.resx" />
     <EmbeddedResource Include="GestionCsv\frmImport.resx">
       <DependentUpon>frmImport.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GestionVst\FrmAjoutVst.resx">
       <DependentUpon>FrmAjoutVst.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionVst\FrmModifVst.resx">
+      <DependentUpon>FrmModifVst.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
