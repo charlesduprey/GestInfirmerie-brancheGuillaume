@@ -438,9 +438,34 @@ namespace CSV_import_export
 				// The first column of schema table contains the column names.
 				// The data type is nvarcher(4000) in all columns.
                 string ctStr = "INSERT INTO [" + tableOwner + "].[" + tableName + "] (nom,prenom,date_naissance,tel_eleve,tel_parent,tier_temps,commentaire_sante,id_classe,archive_elv) VALUES ('";
-
+                string controlNom = " SELECT id_classe FROM ELEVES WHERE nom = '";
+                string updateId_classe = "UPDATE ELEVES SET id_classe = '";
+                int valRet = 0;
                 while (dtSchemaTable.Read())
                 {
+
+                    controlNom += dtSchemaTable.GetValue(0).ToString();
+                    controlNom += "' AND prenom ='" + dtSchemaTable.GetValue(1).ToString() + "';";
+
+                    SqlConnection conn = new SqlConnection(connectionString);
+                    SqlCommand command1 = conn.CreateCommand();
+                    command1.CommandText = controlNom;
+                    conn.Open();
+                    valRet = (int)command1.ExecuteScalar();
+
+                    if (valRet > 0)
+                    {
+                        updateId_classe += valRet + "' WHERE nom = '" + dtSchemaTable.GetValue(0).ToString() + "' AND prenom ='" + dtSchemaTable.GetValue(1).ToString() + "';";
+                        SqlConnection connec = new SqlConnection(connectionString);
+                        SqlCommand command2 = conn.CreateCommand();
+                        command2.CommandText = controlNom;
+                        connec.Open();
+                        command2.ExecuteNonQuery();
+                    }
+                    conn.Close();
+
+                   
+
                     for (int i = 0; i < 9; i++)
                     {
                         ctStr += dtSchemaTable.GetValue(i).ToString();
@@ -461,14 +486,15 @@ namespace CSV_import_export
 
                     // Runs the sql command to make the destination table.
 
-                    SqlConnection conn = new SqlConnection(connectionString);
-                    SqlCommand command = conn.CreateCommand();
+                    SqlConnection conne = new SqlConnection(connectionString);
+                    SqlCommand command = conne.CreateCommand();
                     command.CommandText = ctStr;
-                    conn.Open();
+                    conne.Open();
                     command.ExecuteNonQuery();
-                    conn.Close();
+                    conne.Close();
                     ctStr = "INSERT INTO [" + tableOwner + "].[" + tableName + "] (nom,prenom,date_naissance,tel_eleve,tel_parent,tier_temps,commentaire_sante,id_classe,archive_elv) VALUES ('";
-                    
+                    controlNom = " ELECT id_classe FROM ELEVES WHERE nom = '";
+                    updateId_classe = "UPDATE ELEVES SET id_classe = '";
                 }
                 return true;
 
