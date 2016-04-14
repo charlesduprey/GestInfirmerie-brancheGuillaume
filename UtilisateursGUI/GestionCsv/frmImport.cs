@@ -455,7 +455,7 @@ namespace CSV_import_export
 
                     if (valRet > 0)
                     {
-                        updateId_classe += valRet + "' WHERE nom = '" + dtSchemaTable.GetValue(0).ToString() + "' AND prenom ='" + dtSchemaTable.GetValue(1).ToString() + "';";
+                        updateId_classe += dtSchemaTable.GetValue(7).ToString() + "' WHERE nom = '" + dtSchemaTable.GetValue(0).ToString() + "' AND prenom ='" + dtSchemaTable.GetValue(1).ToString() + "';";
                         SqlConnection connec = new SqlConnection(connectionString);
                         SqlCommand command2 = conn.CreateCommand();
                         command2.CommandText = controlNom;
@@ -493,7 +493,7 @@ namespace CSV_import_export
                     command.ExecuteNonQuery();
                     conne.Close();
                     ctStr = "INSERT INTO [" + tableOwner + "].[" + tableName + "] (nom,prenom,date_naissance,tel_eleve,tel_parent,tier_temps,commentaire_sante,id_classe,archive_elv) VALUES ('";
-                    controlNom = " ELECT id_classe FROM ELEVES WHERE nom = '";
+                    controlNom = " SELECT id_classe FROM ELEVES WHERE nom = '";
                     updateId_classe = "UPDATE ELEVES SET id_classe = '";
                 }
                 return true;
