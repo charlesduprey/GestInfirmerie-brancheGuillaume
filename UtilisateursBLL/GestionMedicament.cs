@@ -73,5 +73,12 @@ namespace UtilisateursBLL
             return MedicamentDAO.ArchiverMedicament(unMedicament);
         }
         #endregion
+
+        #region Méthode qui renvoit le nombre de Medicaments donnés sur l'année scolaire
+        public static int GetNbMedicamentsAnnees()
+        {
+            return MedicamentDAO.GetNbMedicamentsAnnees();
+        }
+        #endregion
     }
 }

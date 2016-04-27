@@ -23,6 +23,13 @@ namespace UtilisateursBLL
         }
         #endregion
 
+        #region Accesseur en lecture du nombre de visite par periode
+        public static int GetNbVstMaxP(string dateDeb, string datefin)
+        {
+           return VisiteDAO.GetNbVstMaxP(dateDeb, datefin);
+        }
+        #endregion
+
         #region Définit la chaîne de connexion grâce à la méthode SetchaineConnexion de la DAL
         public static void SetchaineConnexion(ConnectionStringSettings chset)
         {

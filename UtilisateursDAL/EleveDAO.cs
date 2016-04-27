@@ -192,7 +192,7 @@ namespace UtilisateursDAL
 
                 id_classe = int.Parse(monReader["id_classe"].ToString());
 
-                archive_elv = bool.Parse(monReader["archive_elv"].ToString());
+                archive_elv = bool.Parse(monReader["archiver"].ToString());
 
                 unEleve = new Eleve(id_eleve, nom, prenom, date_naissance, tel_eleve, tel_parent, bool.Parse(tier_temps), commentaire_sante, id_classe, archive_elv);
                 lesEleves.Add(unEleve);
@@ -301,7 +301,7 @@ namespace UtilisateursDAL
         }
         #endregion
 
-        #region Méthode GetElevesNonArchives retournant une List d'objets Eleves contenus dans la table ELEVES non archivés
+        #region Méthode GetEleves retournant une List d'objets Eleves contenus dans la table ELEVES
         public static List<Eleve> GetElevesNonArchives()
         {
             #region Liste des attributs nécessaires pour récupérer et retourner le résultat attendu
@@ -327,7 +327,7 @@ namespace UtilisateursDAL
             #region Création d'une commande SQL pour obtenir les élèves non archivés
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
-            cmd.CommandText = "SELECT * FROM ELEVES WHERE archive_elv = '0'";
+            cmd.CommandText = "SELECT * FROM ELEVES WHERE archiver = '0'";
             #endregion
 
             // Récupération du résultat dans une variable
@@ -380,7 +380,7 @@ namespace UtilisateursDAL
 
                 id_classe = int.Parse(monReader["id_classe"].ToString());
 
-                archive_elv = bool.Parse(monReader["archive_elv"].ToString());
+                archive_elv = bool.Parse(monReader["archiver"].ToString());
 
                 unEleve = new Eleve(id_eleve, nom, prenom, date_naissance, tel_eleve, tel_parent, bool.Parse(tier_temps), commentaire_sante, id_classe, archive_elv);
                 lesEleves.Add(unEleve);

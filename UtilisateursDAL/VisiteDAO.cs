@@ -154,6 +154,27 @@ namespace UtilisateursDAL
         }
         #endregion
 
+        #region Méthode GetNbVstMaxP recupère le nombre de visite max selon la periode
+        public static int GetNbVstMaxP(string dateDeb, string dateFin)
+        {
+            // Connexion à la BD
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+            int nbEnr = 0;
+            //création de la requête
+            #region Création d'un objet cmd de type SqlCommand permettant d'utiliser la connexion à la BD et de transmettre une requête
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = maConnexion;
+            cmd.CommandText = "SELECT( COUNT(*) FROM VISITE WHERE date_visite BETWEEN '" + dateDeb + "' AND '" + dateFin + "');";
+            #endregion
+            // Fonction recupère le nombre de visite max selon la periode
+            nbEnr = cmd.ExecuteNonQuery();
+            // Fermeture de la connexion
+            maConnexion.Close();
+            //retour du résultat
+            return nbEnr;
+        }
+        #endregion
+
 
     }
 }

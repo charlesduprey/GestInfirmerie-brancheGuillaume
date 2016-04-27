@@ -215,5 +215,39 @@ namespace UtilisateursDAL
             return nbEnr;
         }
         #endregion
+
+        #region Méthode qui renvoit le nombre de Medicaments donnés sur l'année scolaire
+        public static int GetNbMedicamentsAnnees()
+        {
+            int nbEnr = 0;
+            int annee1 = 1990;
+            int annee2 = 1991;
+
+            if (DateTime.Now.Month < 08 && DateTime.Now.Month >= 01)
+            {
+                annee1 = DateTime.Now.Year - 1;
+                annee2 = DateTime.Now.Year;
+            }
+            else if (DateTime.Now.Month >= 08 && DateTime.Now.Month == 12)
+            {
+                annee1 = DateTime.Now.Year;
+                annee2 = DateTime.Now.Year + 1;
+            }
+
+            // Connexion à la BD
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = maConnexion;
+            cmd.CommandText = "SELECT SUM(PRESCRIPTION.nb_prescri) FROM PRESCRIPTION, VISITE WHERE PRESCRIPTION.id_visite = VISITE.id_visite AND VISITE.date_visite BETWEEN '" + annee1 + "-08-01' AND '" + annee2 + "-07-31'";
+
+            nbEnr = (int)cmd.ExecuteScalar();
+
+            // Fermeture de la connexion
+            maConnexion.Close();
+
+            return nbEnr;
+        }
+        #endregion
     }
 }
